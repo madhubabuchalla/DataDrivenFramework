@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class Config {
 	
-	private static final String CONFIGURATION_FILE = "C:\\Users\\SESA439753\\Desktop\\Runtime Parameters.properties";
+	private static final String CONFIGURATION_FILE = "C:\\Users\\Admin\\Desktop\\Runtime Parameters.properties.txt";
 
     public static String runTimeURL = null;
 	public static String runTimeBrowser  = null;
