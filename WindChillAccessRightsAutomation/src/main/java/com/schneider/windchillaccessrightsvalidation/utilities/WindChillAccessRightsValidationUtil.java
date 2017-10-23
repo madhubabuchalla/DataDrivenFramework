@@ -701,7 +701,7 @@ public static boolean selectCheckboxforRequiredUser(String ExpectedName) throws 
 				
 		}else{
 	
-			if(GenericFunctionLibrary.isMatchFoundInColumn(ObjectRepository.ELEMENT_DROPDOWN_ID, objectType)){
+			if(GenericFunctionLibrary.isMatchFoundInColumn(ObjectRepository.DOCUMENT_OPTIONS_XPATH, objectType)){
 				
 		// Selecting content source from drop down
 		Thread.sleep(3000);

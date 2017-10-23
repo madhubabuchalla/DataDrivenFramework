@@ -27,6 +27,12 @@
     <version>3.5.3</version>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-server</artifactId>
+    <version>3.5.3</version>
+</dependency>
 
 <!-- https://mvnrepository.com/artifact/xerces/xercesImpl -->
 <dependency>

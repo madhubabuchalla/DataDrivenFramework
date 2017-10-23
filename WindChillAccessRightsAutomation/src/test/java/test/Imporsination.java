@@ -43,7 +43,7 @@ public static void openBrowser() throws IOException, InterruptedException {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		String URL = Config.PRE_PROD_URL;
+		String URL = Config.SERVER_URL;
 		
 		System.out.println("URL is "+ URL);
 		
@@ -63,7 +63,7 @@ public static void openBrowser() throws IOException, InterruptedException {
 	        driver = new ChromeDriver(capabilities);
 	        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
-			String URL = Config.PRE_PROD_URL;
+			String URL = Config.SERVER_URL;
 			
 			System.out.println("URL is "+ URL);
 			
@@ -87,7 +87,7 @@ public static void openBrowser() throws IOException, InterruptedException {
 		
 		log.info("IE Driver Initiated");
 		 driver = new InternetExplorerDriver(capabilities);
-		 String URL = Config.PRE_PROD_URL;
+		 String URL = Config.SERVER_URL;
 					
 		System.out.println("URL is "+ URL);
 		

@@ -1,8 +1,8 @@
 package test;
 
-import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 
 import com.schneider.windchillaccessrightsvalidation.genericlibraries.GenericFunctionLibrary;
 
@@ -13,15 +13,16 @@ import com.schneider.windchillaccessrightsvalidation.genericlibraries.GenericFun
 public class SuiteBase {
 @AfterSuite
 
-public void quitBrowser(){
+public void quitBrowser() throws UnsupportedEncodingException{
 	GenericFunctionLibrary.closeDriver();
+	EmailNotification.sendMailwithAttachment("This is to Test Email Notification");
 }
 
-
+/*
 @BeforeSuite
 public void launchBrowser() throws IOException, InterruptedException{
 	GenericFunctionLibrary.launchServer();
 }
-
+*/
 
 }

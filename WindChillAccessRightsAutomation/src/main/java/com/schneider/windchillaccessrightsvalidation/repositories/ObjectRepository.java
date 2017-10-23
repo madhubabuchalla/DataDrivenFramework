@@ -68,6 +68,8 @@ public class ObjectRepository {
 	public static final String CREATE_NEW_DOCUMENT_BUTTON_XPATH  = "//button[contains(text(),'Actions')]/ancestor::tr[@class='x-toolbar-left-row']/td//button[@style='background-image: url(\"netmarkets/images/newdoc.gif\");']";
 
 	public static final String ELEMENT_DROPDOWN_ID = "createType";
+	
+	public static final String DOCUMENT_OPTIONS_XPATH = "//select[@id='createType']/option";
 
 	public static final String SELECT_CONTENT_SOURCE_ID = "primary0contentSourceList";
 

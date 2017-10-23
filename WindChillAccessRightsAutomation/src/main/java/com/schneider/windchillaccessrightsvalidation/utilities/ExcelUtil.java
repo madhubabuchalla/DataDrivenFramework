@@ -2,6 +2,7 @@ package com.schneider.windchillaccessrightsvalidation.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -33,7 +34,7 @@ import com.aventstack.extentreports.Status;
 public class ExcelUtil extends ReportGenerator{
 	
 	private static Logger log = Logger.getLogger(ExcelUtil.class);
-		
+	Object[][] retObjArr = null;	
 	ExtentTest extentReport = null;	
 	public String filePath=null;
 	public FileInputStream fis = null;
@@ -44,7 +45,8 @@ public class ExcelUtil extends ReportGenerator{
 		this.filePath = filePath;
 		
 		try{
-			fis = new FileInputStream(new File(filePath));
+			
+		fis = new FileInputStream(new File(filePath));
 		wb = new HSSFWorkbook(fis);
 		getExtentInstance();
 		log.info("Invoked "+filePath +" Excel File");
@@ -549,7 +551,126 @@ public class ExcelUtil extends ReportGenerator{
 	return iswritten;
 	}
 	
-	
+	public  Object[][] getTableArray(String SheetName) throws Exception {   
+		 
+		   String[][] tabArray = null;
+
+		   try {
+
+			    // Access the required test data sheet
+			   fis = new FileInputStream(new File(this.filePath));
+			   wb = new HSSFWorkbook(fis);
+
+			   ws = wb.getSheet(SheetName);
+
+			   int startRow = 1;
+
+			   int startCol = 0;
+
+			   int ci,cj;
+
+			   int totalRows = ws.getLastRowNum();
+			   
+			   int totalCols = getColumnCount(SheetName)-2;
+			  
+			   tabArray=new String[totalRows][totalCols];
+
+			   ci=0;
+
+			   for (int i=startRow;i<=totalRows;i++, ci++) {           	   
+
+				  cj=0;
+
+				   for (int j=startCol;j<=totalCols-1;j++, cj++){
+
+					   tabArray[ci][cj]=getCellData(i,j);
+
+					 //  System.out.println(tabArray[ci][cj]);  
+
+						}
+
+					}
+
+				}
+
+			catch (FileNotFoundException e){
+
+				System.out.println("Could not read the Excel sheet");
+
+				e.printStackTrace();
+
+				}
+
+			catch (IOException e){
+
+				System.out.println("Could not read the Excel sheet");
+
+				e.printStackTrace();
+
+				}
+
+			return(tabArray);
+
+			}
+
+		public String getCellData(int RowNum, int ColNum) throws Exception {
+
+			try{
+				
+				
+				HSSFCell Cell = ws.getRow(RowNum).getCell(ColNum);
+
+				int dataType = Cell.getCellType();
+
+				if  (dataType == 3) {
+
+					return "";
+
+				}else{
+
+					String CellData = Cell.getStringCellValue();
+
+					return CellData;
+				}
+				}catch (Exception e){
+
+				System.out.println(e.getMessage());
+
+				throw (e);
+
+				}
+
+			}	
+		
+		 public Object[][] getExcelData( String sheetName, int rowNumber) throws Exception {
+		    	
+		        retObjArr = getTableArray(sheetName);
+		        System.out.println("getExcelData function executed!!");
+		        return retObjArr;
+		    }
+		 
+		 public Object[][] fetchRowData(String sheetName, int rowNumber) throws Exception{
+			
+		    	
+		    	Object[][] rowData = getExcelData( sheetName, rowNumber); 
+		   
+		    	return rowData;
+		    }
+		 public void fetchColumnValue( String sheetName, int rowNumber, String colName ) throws Exception{
+			 getExcelData( sheetName, rowNumber);
+		    	int NumberOfColumns = 16;
+		    	
+		    	int colNumber = getCellNumber(sheetName, rowNumber, colName);
+		    	Object[][] rowData = new String[rowNumber][NumberOfColumns]; 
+		    	
+		    	
+		    		    		
+		    		rowData = retObjArr;
+		    		
+		    		System.out.println(rowData[rowNumber][colNumber].toString());
+		     
+		           
+		    }
 			
 }
 

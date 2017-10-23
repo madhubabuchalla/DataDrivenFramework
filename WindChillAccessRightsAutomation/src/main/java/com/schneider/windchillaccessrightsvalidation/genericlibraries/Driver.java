@@ -1,10 +1,11 @@
 package com.schneider.windchillaccessrightsvalidation.genericlibraries;
 
+import java.net.URL;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
  * @author SESA439753
@@ -30,55 +31,41 @@ public class Driver  {
 				log.warn("Driver is NOT Specified in Config.java file for the BROWSER variable");
 
 			} else {
-				// Check If any previous webdriver browser Instance Is exist
-				// then run new test in that existing webdriver browser
-				// Instance.
+				
+	// Check If any previous webdriver browser Instance Is exist then run new test in that existing webdriver browser Instance.
 
-				if (Config.BROWSER.equalsIgnoreCase("firefox") && ExistingmozillaBrowser != null) {
-					driver = ExistingmozillaBrowser;
-					return;
-				} else if (Config.BROWSER.equalsIgnoreCase("chrome") && ExistingchromeBrowser != null) {
+				 if (Config.BROWSER.equalsIgnoreCase("chrome") && ExistingchromeBrowser != null) {
 					driver = ExistingchromeBrowser;
 					log.info("taken the existing chrome instance");
 					return;
-				} else if (Config.BROWSER.equalsIgnoreCase("IE") && ExistingIEBrowser != null) {
-					driver = ExistingIEBrowser;
-					return;
 				}
 
-				if (Config.BROWSER.equalsIgnoreCase("firefox")) {
-					// Load Firefox driver Instance.
-					driver = new FirefoxDriver();
-					ExistingmozillaBrowser = driver;
-					log.info("Firefox Driver Instance loaded successfully.");
-
-				} else if (Config.BROWSER.equalsIgnoreCase("Chrome")) {
+				 if (Config.BROWSER.equalsIgnoreCase("Chrome")) {
 					// Load Chrome driver Instance.
-					System.setProperty("webdriver.chrome.driver",
-							System.getProperty("user.dir") + "//Drivers//chromedriver.exe");
+					if(Config.EXECUTE_ON.equalsIgnoreCase("local")){
+					System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//Drivers//chromedriver.exe");
 					driver = new ChromeDriver();
 					ExistingchromeBrowser = driver;
 					log.info("Chrome Driver Instance loaded successfully.");
+					
+					} else if(Config.EXECUTE_ON.equalsIgnoreCase("remote")){
+					DesiredCapabilities cap = DesiredCapabilities.chrome();
+					cap.setBrowserName("chrome");
+					cap.setPlatform(org.openqa.selenium.Platform.WINDOWS);
+					driver = new RemoteWebDriver(new URL(Config.HUB_URL), cap);
+					ExistingchromeBrowser = driver;
+					}
+					
+					driver.manage().window().maximize();
 
-				} else if (Config.BROWSER.equalsIgnoreCase("IE")) {
-					// Load IE driver Instance.
-					System.setProperty("webdriver.ie.driver",
-							System.getProperty("user.dir") + "//Drivers//IEDriverServer.exe");
-					driver = new InternetExplorerDriver();
-					ExistingIEBrowser = driver;
-					log.info("IE Driver Instance loaded successfully.");
-
-				}
+				 }
 			}
 
 		} catch (Exception e) {
 			log.info(e);
 		}
 	}
-					
-				
-		
+		public static void main(String[] arg)throws Exception{
+			driverManager();
+		}
 }
-
-
-

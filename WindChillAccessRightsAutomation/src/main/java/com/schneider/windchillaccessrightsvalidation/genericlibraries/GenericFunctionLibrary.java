@@ -1055,12 +1055,12 @@ return isSelected;
 		boolean isfound = false;
 
 		try {
-			List<WebElement> status = driver.findElements(By.xpath(locatorForColumn));
+			List<WebElement> options = driver.findElements(By.xpath(locatorForColumn));
 
-			log.info("Options size : " + status.size());
+			log.info("Options size : " + options.size() +" for "+ locatorForColumn);
 
-			for (WebElement state : status) {
-				String StatusName = state.getText();
+			for (WebElement option : options) {
+				String StatusName = option.getText();
 
 		//	log.info("Option Name : " + StatusName);
 

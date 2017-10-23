@@ -39,9 +39,9 @@ public class EmailNotification {
 	
 	
 	public static void main(String args[]) throws EmailException, UnsupportedEncodingException{
-	//	sendMailOutlook();
+	//	sendMailOutlook(textBody);
 	//	sendMailHtmlMail();
-	//	sendMailwithAttachment(toEmail, subject, textBody);
+		sendMailwithAttachment( textBody);
 	}
 
 	
@@ -106,9 +106,6 @@ public class EmailNotification {
 	        }
 	    }
 	    
-	
-	
-	
 	
 	public static void sendMailwithAttachment(String body) throws UnsupportedEncodingException{
 		

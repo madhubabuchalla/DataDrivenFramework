@@ -19,7 +19,7 @@ import com.schneider.windchillaccessrightsvalidation.genericlibraries.Config;
 
 public class FileUtil {
 	
-	private static final Logger log = Logger.getLogger("FileUtil");
+	private static final Logger log = Logger.getLogger(FileUtil.class);
 	
 	 public static String copyFile(String objectType, String role, String excelInput) throws IOException{
 		 String resultFilePath = null;
