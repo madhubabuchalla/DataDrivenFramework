@@ -11,7 +11,7 @@ public class TestDataProvider {
     int rowCount; 
     int colCount;
     ExcelUtil excel = null;
-  String filePath = "C:\\Users\\SESA439753\\git-local-repository\\ssowindchillaccessrightsautomation\\WindChillAccessRightsAutomation\\SourceFiles\\Schneider WindChill Document Types and Access Rights_Manufacturer Part.xls";
+  String filePath = "D:\\git-local-repository\\DataDrivenFramework\\WindChillAccessRightsAutomation\\SourceFiles\\Schneider WindChill Document Types and Access Rights_Manufacturer Part.xls";
   
   
    @DataProvider
